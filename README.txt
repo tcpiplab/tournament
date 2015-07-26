@@ -1,9 +1,19 @@
 Luke Sheppard
 lshep.usc[(at)]gmail.com
 Project 2 of the Fullstack Nanodegree at Udacity.
-July 24, 2015
+July 25, 2015
 
-This README file is for the final assignment for the Udacity Relational Databases course as part of the Fullstack Nanodegree. It should accompany the following three files:
+This README file is for the final assignment for the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
+
+
+PURPOSE
+The tournament.py script will store the win/lose outcomes of game matches between pairs of players and generate pairings for Swiss-System tournaments, which are described at this URL:
+
+  https://en.wikipedia.org/wiki/Swiss-system_tournament 
+
+
+FILES 
+This README file should accompany the following three files: 
 
   tournament.py
   tournament.sql
@@ -11,21 +21,33 @@ This README file is for the final assignment for the Udacity Relational Database
 
 The first two were written by me, the latter is just a copy of the test script that I downloaded from the course materials.
 
-All code was developed in a vagrant 1.7.2 VM running on Mac OS X 10.10.4. The guest OS was Ubuntu 14.04.2 LTS. Inside that VM was python 2.7 and PostgreSQL 9.3.6.
+
+PREREQUISITES
+All code was developed on Ubuntu 14.04.2 LTS, python 2.7 and PostgreSQL 9.3.6. You will need to install the psycopg2 module for Python, as described at:
+
+  http://initd.org/psycopg/docs/install.html
+
+The postgres daemon must be running. This URL shows how to do that:
+
+  http://www.postgresql.org/docs/9.3/static/server-start.html
 
 
-To get this environment running so that the test script will work, you must do these, in order:
+BUILD
+To create the database and its tables, run this command:
 
-On the Mac, depending on where you've installed vagrant, cd into the apropriate directory. For me it was:
+  psql -f tournament.sql
 
-  ~/fullstack/vagrant/tournament
 
-Then,
+TEST
+To test the tournament.py script, run this command:
 
-  vagrant up
+  python tournament_test.py
 
-Then, after it comes up,
 
-  vagrant ssh
+RUN
+To run the tournament.py script, run this command:
 
-You'll then be inside the Linux environment and be able to run everything. If you have problems, you may need to install the psycopg2 module for Python, or you may need to manually start the postgres daemon.
+  python tournament.py
+
+This will display a menu based interface where you select menu item numbers to call the various functions, including exiting the script if you choose. 
+

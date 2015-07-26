@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # 
+# Luke Sheppard
+# lshep.usc[(at)]gmail.com
+# Project 2 of the Fullstack Nanodegree at Udacity.
+# July 25, 2015
+#
 # tournament.py -- implementation of a Swiss-system tournament
 #
+# This script will store the win/lose outcomes of game matches between pairs of players and generate pairings for Swiss-System tournaments. See README.txt for prerequisites, build, and run instructions
+
 
 import sys
 import psycopg2

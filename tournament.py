@@ -7,19 +7,24 @@
 #
 # tournament.py -- implementation of a Swiss-system tournament
 #
-# This script will store the win/lose outcomes of game matches between pairs of players and generate pairings for Swiss-System tournaments. See README.txt for prerequisites, build, and run instructions
-
+# This script will store the win/lose outcomes of game matches between pairs of 
+# players and generate pairings for Swiss-System tournaments. See the 
+# accompanying README.txt file for prerequisites, build, and run instructions.
 
 import sys
 import psycopg2
 
 def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
+    # Call the connect() function from the psycopg2 module
+    # Return a new connection object.
     return psycopg2.connect("dbname=tournament")
 
 
 def deleteMatches():
     """Remove all the match records from the database."""
+    # Delete every row from the 'matches' database table.
+    # But don't delete the table itself.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("DELETE FROM matches")
@@ -30,6 +35,8 @@ def deleteMatches():
 
 def deletePlayers():
     """Remove all the player records from the database."""
+    # Delete every row from the 'playernames' database table.
+    # But don't delete the table itself.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("DELETE FROM playernames")
@@ -40,6 +47,9 @@ def deletePlayers():
 
 def showPlayers():
     """Returns a list of players currently registered."""
+    # Execute a SELECT query for the 'id' and 'name' columns
+    # of the 'playernames' database table.
+    # Print the results to stdout with a header.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("SELECT id, name FROM playernames")
@@ -58,6 +68,8 @@ def showPlayers():
 
 def countPlayers():
     """Returns the number of players currently registered."""
+    # Execute a SELECT query for the 'id' column and count the rows.
+    # Return the count as an integer.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("SELECT COUNT(id) FROM playernames")
@@ -77,7 +89,9 @@ def registerPlayer(newname):
     Args:
       name: the player's full name (need not be unique).
     """
-
+    # Execute an INSERT query against the 'playernames' database table.
+    # The required argument is a string.
+    # The argument is formatted as a one-item list to prevent SQLi attacks.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("INSERT INTO playernames (name) VALUES (%s)", (newname,) )
@@ -99,7 +113,11 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
-
+    # Execute a SELECT query against the 'id' and 'name' tables,
+    # LEFT JOINed with the 'matches' table, counting id if the id 
+    # appears in the 'winner' column of the 'matches' table.
+    # Populate a tuple with lists of the form (id, name, wins, matches).
+    # Return that tuple to the calling function.
     DB = connect()
     cursor = DB.cursor()
     query = """ SELECT    playernames.id, name, 
@@ -110,9 +128,12 @@ def playerStandings():
                 GROUP BY  playernames.id, name
                 ORDER BY wins DESC"""
     cursor.execute(query)
+    # pupulate a tuple of lists
     id_name_wins_matches = cursor.fetchall()
-    count =    id_name_wins_matches[0][0]
+    # Example of the tuple of lists:
     # [(38, 'Melpomene Murray', 3L, 4L), (40, 'Clark Kent', 1L, 1L), (39, 'Randy Schwartz', 1L, 5L), (41, 'Jimmy Carter', 0L, 0L)]
+    # TODO is the 'count' var ever used?
+    count =    id_name_wins_matches[0][0]
     cursor.close()
     DB.close()
     return id_name_wins_matches
@@ -120,6 +141,9 @@ def playerStandings():
 
 def showPlayerStandings():
     """Prints a list of players standings."""
+    # Print a four-column header to stdout: id, name, wins, matches.
+    # Iterate through the tuple returned by calling playerStandings(),
+    # printing each list of the tuple as a row to stdout. 
     standings = playerStandings()    
     print('ID |        NAME        | WINS | MATCHES')
     print('--  --------------------  ----   -------')
@@ -147,6 +171,12 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
+    # Execute an INSERT query against the 'winner' and 'loser' columns
+    # of the 'matches' database table.
+    # The required arguments are strings of the numeric ids of the respective
+    # winner and loser of the match.
+    # The arguments are formatted as a two-item list of strings to prevent 
+    # SQLi attacks. 
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("INSERT INTO matches (winner, loser) VALUES (%s, %s)", (winner, loser) )

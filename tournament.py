@@ -200,7 +200,9 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-
+    # Call playerStandings(), thereby receiving a tuple.
+    # Iterate through each list in the tuple, adding names and IDs to a new
+    # tuple which is returned by the fuction.
     swiss_pairings = []
     this_pair = ()
     thestandings = playerStandings()
@@ -234,6 +236,7 @@ def swissPairings():
 
 def showSwissPairings():
     """ Generate and print out the next round of Swiss pairings """
+    # Call swissPairings() and print the tuple it returns.
     pairings = swissPairings()
     print('\n')
     for row in pairings:

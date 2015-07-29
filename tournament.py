@@ -176,7 +176,7 @@ def showPlayerStandings():
                 print('      ' + str(item))
                 col = 0
 
-
+#TODO convert reportMatch() to OOP
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
 

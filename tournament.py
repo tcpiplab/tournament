@@ -81,7 +81,7 @@ def showPlayers():
     #return cursor[0][0]
     print('ID  Name') 
     print('--  ------------------')
-    for row in player_list:
+    for row in cursor:
         for item in row:
             if str(item).isdigit():
                 sys.stdout.write(str(item) + '  ')

@@ -78,7 +78,6 @@ def showPlayers():
     conn = DB().execute("SELECT id, name FROM playernames")
     cursor = conn["cursor"].fetchall()
     conn['conn'].close()
-    #return cursor[0][0]
     print('ID  Name') 
     print('--  ------------------')
     for row in cursor:
@@ -93,14 +92,10 @@ def countPlayers():
     """Returns the number of players currently registered."""
     # Execute a SELECT query for the 'id' column and count the rows.
     # Return the count as an integer.
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("SELECT COUNT(id) FROM playernames")
-    thecount = cursor.fetchall()
-    count =    thecount[0][0]
-    cursor.close()
-    DB.close()
-    return count
+    conn = DB().execute("SELECT COUNT(id) FROM playernames")
+    cursor = conn["cursor"].fetchall()
+    conn['conn'].close()
+    return cursor[0][0]
 
 
 def registerPlayer(newname):

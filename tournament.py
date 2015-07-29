@@ -59,12 +59,8 @@ def deleteMatches():
     """Remove all the match records from the database."""
     # Delete every row from the 'matches' database table.
     # But don't delete the table itself.
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("DELETE FROM matches")
-    DB.commit()
-    cursor.close()
-    DB.close()
+    DB().execute("DELETE FROM matches", True)
+
 
 
 def deletePlayers():

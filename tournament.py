@@ -75,12 +75,10 @@ def showPlayers():
     # Execute a SELECT query for the 'id' and 'name' columns
     # of the 'playernames' database table.
     # Print the results to stdout with a header.
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("SELECT id, name FROM playernames")
-    player_list = cursor.fetchall()
-    cursor.close()
-    DB.close()
+    conn = DB().execute("SELECT id, name FROM playernames")
+    cursor = conn["cursor"].fetchall()
+    conn['conn'].close()
+    #return cursor[0][0]
     print('ID  Name') 
     print('--  ------------------')
     for row in player_list:

@@ -136,8 +136,6 @@ def playerStandings():
     # appears in the 'winner' column of the 'matches' table.
     # Populate a tuple with lists of the form (id, name, wins, matches).
     # Return that tuple to the calling function.
-    DB = connect()
-    cursor = DB.cursor()
     query = """ SELECT    playernames.id, name, 
                 COUNT(CASE playernames.id WHEN winner THEN 1 ELSE NULL END) AS wins, 
                 COUNT(match_id) AS matches
@@ -145,20 +143,13 @@ def playerStandings():
                           LEFT JOIN matches ON playernames.id IN (winner, loser)
                 GROUP BY  playernames.id, name
                 ORDER BY wins DESC"""
-    ##cursor.execute(query)
     conn = DB().execute(query)
-    # pupulate a tuple of lists
-    ##id_name_wins_matches = cursor.fetchall()
+    # populate a tuple of lists
     cursor = conn["cursor"].fetchall()
     # Example of the tuple of lists:
     # [(38, 'Melpomene Murray', 3L, 4L), (40, 'Clark Kent', 1L, 1L), (39, 'Randy Schwartz', 1L, 5L), (41, 'Jimmy Carter', 0L, 0L)]
-    # TODO is the 'count' var ever used?
-    count =    id_name_wins_matches[0][0]
-    conn[‘conn’].close()
-    ##cursor.close()
-    ##DB.close()
-    return cursor[0][0]
-    ##return id_name_wins_matches
+    conn['conn'].close()
+    return cursor
 
 
 def showPlayerStandings():

@@ -145,16 +145,20 @@ def playerStandings():
                           LEFT JOIN matches ON playernames.id IN (winner, loser)
                 GROUP BY  playernames.id, name
                 ORDER BY wins DESC"""
-    cursor.execute(query)
+    ##cursor.execute(query)
+    conn = DB().execute(query)
     # pupulate a tuple of lists
-    id_name_wins_matches = cursor.fetchall()
+    ##id_name_wins_matches = cursor.fetchall()
+    cursor = conn["cursor"].fetchall()
     # Example of the tuple of lists:
     # [(38, 'Melpomene Murray', 3L, 4L), (40, 'Clark Kent', 1L, 1L), (39, 'Randy Schwartz', 1L, 5L), (41, 'Jimmy Carter', 0L, 0L)]
     # TODO is the 'count' var ever used?
     count =    id_name_wins_matches[0][0]
-    cursor.close()
-    DB.close()
-    return id_name_wins_matches
+    conn[‘conn’].close()
+    ##cursor.close()
+    ##DB.close()
+    return cursor[0][0]
+    ##return id_name_wins_matches
 
 
 def showPlayerStandings():

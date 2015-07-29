@@ -67,12 +67,7 @@ def deletePlayers():
     """Remove all the player records from the database."""
     # Delete every row from the 'playernames' database table.
     # But don't delete the table itself.
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("DELETE FROM playernames")
-    DB.commit()
-    cursor.close()
-    DB.close()
+    DB().execute("DELETE FROM playernames", True)
 
 
 def showPlayers():

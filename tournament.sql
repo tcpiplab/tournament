@@ -30,4 +30,9 @@ winner int REFERENCES playernames (id),
 loser int REFERENCES playernames (id)
 );
 
-
+-- create a view that returns the players' wins with the required fields
+CREATE VIEW player_wins AS
+SELECT playernames.id, playernames.name, COUNT(matches.winner) AS wins
+FROM playernames LEFT JOIN matches
+ON playernames.id = matches.winner
+GROUP BY playernames.id,  winner

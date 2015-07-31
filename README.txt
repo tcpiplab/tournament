@@ -1,7 +1,7 @@
 Luke Sheppard
 lshep.usc[(at)]gmail.com
 Project 2 of the Fullstack Nanodegree at Udacity.
-July 25, 2015
+July 31, 2015
 
 This README file is for the final assignment for the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
 

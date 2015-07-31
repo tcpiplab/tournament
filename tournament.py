@@ -203,7 +203,16 @@ def reportMatch(winner, loser):
     DB.close()
  
  
-def swissPairings():
+def showSwissPairings():
+    """ Generate and print out the next round of Swiss pairings """
+    # Call swissPairings() and print the tuple it returns.
+    pairings = newSwissPairings()
+    print('\n')
+    for row in pairings:
+        print(row)
+   
+
+def newSwissPairings():
     """Returns a list of pairs of players for the next round of a match.
   
     Assuming that there are an even number of players registered, each player
@@ -218,58 +227,18 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    # Call playerStandings(), thereby receiving a tuple.
-    # Iterate through each list in the tuple, adding names and IDs to a new
-    # tuple which is returned by the fuction.
-    swiss_pairings = []
-    this_pair = ()
-    thestandings = playerStandings()
-    col = 0
-    players = 0
-    for row in thestandings:
-        for item in row:
-            if col == 0:
-                the_id = str(item)
-                col += 1
-            elif col == 1:
-                the_name = item
-                col += 1
-                pass
-            elif col == 2:
-                col += 1
-                pass
-            else:
-                col = 0
-                players += 1
-                if players == 1:
-                    this_pair = this_pair + (int(the_id), the_name)
-                    #swiss_pairings.append(this_pair)
-                elif players == 2:
-                    this_pair = this_pair + (int(the_id), the_name)
-                    swiss_pairings.append(this_pair)
-                    this_pair = ()
-                    players = 0
-    return swiss_pairings
-
-
-def showSwissPairings():
-    """ Generate and print out the next round of Swiss pairings """
-    # Call swissPairings() and print the tuple it returns.
-    pairings = newSwissPairings()
-    print('\n')
-    for row in pairings:
-        print(row)
-   
-
-def newSwissPairings():
-     #create a view that returns the players' wins with the required fields, like player id, name, and number of wins, like so:
+    # Use the custom VIEW called "player_wins" to SELECT players' id and name, 
+    # which have an equal number of wins, just once, to avoid repetition.
+    # Self JOIN the view, SELECTing all the players and their wins, 
+    # where the wins are equal ON a.wins = b.wins, with a progression of the 
+    # player's id, to avoid repetition.
+    # Return a tuple of lists:
+    # [(id1, name1, id2, name2), (id3, name3, id4, name4)]
 
     query = """SELECT a.id, a.name, b.id, b.name 
                  FROM player_wins as a JOIN player_wins as b 
-                 ON a.wins = b.wins WHERE a.id > b.id
-                """
+                 ON a.wins = b.wins WHERE a.id > b.id"""
     conn = DB().execute(query)
-    
     # populate a tuple of lists
     cursor = conn["cursor"].fetchall()
     conn['conn'].close()

@@ -3,7 +3,7 @@
 # Luke Sheppard
 # lshep.usc[(at)]gmail.com
 # Project 2 of the Fullstack Nanodegree at Udacity.
-# July 25, 2015
+# July 31, 2015
 #
 # tournament.py -- implementation of a Swiss-system tournament
 #

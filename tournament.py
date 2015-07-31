@@ -266,6 +266,8 @@ if __name__ == '__main__':
   while 1:
     print("""
 
+    0) New swiss pairings.
+
     1) Delete all matches.
 
     2) Delete all players.
@@ -284,6 +286,8 @@ if __name__ == '__main__':
 
     """)
     selection = int(input('Select a menu item: '))
+    if selection == 0:
+        newSwissPairings()
     if selection == 1:
         deleteMatches()
     elif selection == 2:

@@ -255,18 +255,31 @@ def swissPairings():
 def showSwissPairings():
     """ Generate and print out the next round of Swiss pairings """
     # Call swissPairings() and print the tuple it returns.
-    pairings = swissPairings()
+    pairings = newSwissPairings()
     print('\n')
     for row in pairings:
         print(row)
+   
+
+def newSwissPairings():
+     #create a view that returns the players' wins with the required fields, like player id, name, and number of wins, like so:
+
+    query = """SELECT a.id, a.name, b.id, b.name 
+                 FROM player_wins as a JOIN player_wins as b 
+                 ON a.wins = b.wins WHERE a.id > b.id
+                """
+    conn = DB().execute(query)
     
+    # populate a tuple of lists
+    cursor = conn["cursor"].fetchall()
+    conn['conn'].close()
+    return cursor
+
 
 # only show the menu if invoked as a command line tool
 if __name__ == '__main__':
   while 1:
     print("""
-
-    0) New swiss pairings.
 
     1) Delete all matches.
 
@@ -286,8 +299,6 @@ if __name__ == '__main__':
 
     """)
     selection = int(input('Select a menu item: '))
-    if selection == 0:
-        newSwissPairings()
     if selection == 1:
         deleteMatches()
     elif selection == 2:

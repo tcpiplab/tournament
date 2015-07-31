@@ -110,6 +110,9 @@ def registerPlayer(newname):
     # Execute an INSERT query against the 'playernames' database table.
     # The required argument is a string.
     # The argument is formatted as a one-item list to prevent SQLi attacks.
+    #
+    # The DB() class defined above does not allow me to parameterize the values,
+    # so I'm connecting manually.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("INSERT INTO playernames (name) VALUES (%s)", (newname,) )
@@ -176,7 +179,6 @@ def showPlayerStandings():
                 print('      ' + str(item))
                 col = 0
 
-#TODO convert reportMatch() to OOP
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
 
@@ -190,6 +192,9 @@ def reportMatch(winner, loser):
     # winner and loser of the match.
     # The arguments are formatted as a two-item list of strings to prevent 
     # SQLi attacks. 
+    #
+    # The DB() class defined above does not allow me to parameterize the values,
+    # so I'm connecting manually.
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("INSERT INTO matches (winner, loser) VALUES (%s, %s)", (winner, loser) )

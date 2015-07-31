@@ -206,13 +206,13 @@ def reportMatch(winner, loser):
 def showSwissPairings():
     """ Generate and print out the next round of Swiss pairings """
     # Call swissPairings() and print the tuple it returns.
-    pairings = newSwissPairings()
+    pairings = swissPairings()
     print('\n')
     for row in pairings:
         print(row)
    
 
-def newSwissPairings():
+def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
   
     Assuming that there are an even number of players registered, each player

@@ -3,11 +3,11 @@ Project 2 of the Fullstack Nanodegree at Udacity
 Relational Databases Course
 ---------------------------
 
-This README file is for the final assignment for the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
+This README file is for the final assignment of the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
 
 PURPOSE
 -------
-The tournament.py script will store the win/lose outcomes of game matches between pairs of players and generate pairings for Swiss-System tournaments, which are described at [this URL](https://en.wikipedia.org/wiki/Swiss-system_tournament)
+The tournament.py script will store the win/lose outcomes of game matches between pairs of players and generate pairings for [Swiss-System tournaments][0].
 
 FILES
 -----
@@ -48,5 +48,6 @@ This will display a menu in a terminal based interface where you select menu
 item numbers to call the various functions, including exiting the script if you
 choose.
 
+[0]:https://en.wikipedia.org/wiki/Swiss-system_tournament
 [1]:http://initd.org/psycopg/docs/install.html
 [2]:http://www.postgresql.org/docs/9.3/static/server-start.html

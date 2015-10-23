@@ -3,7 +3,7 @@ Project 2 of the Fullstack Nanodegree at Udacity
 Relational Databases Course
 ---------------------------
 
-This README file is for the final assignment of the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
+This is my submission for the final assignment of the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/816651/10701941/4843b01a-797b-11e5-8c24-7f73c6b31b3a.png)
 

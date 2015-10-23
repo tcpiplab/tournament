@@ -5,6 +5,8 @@ Relational Databases Course
 
 This README file is for the final assignment of the Udacity Relational Databases course as part of the Fullstack Nanodegree. Follow these instructions in order.
 
+![Screenshot](https://cloud.githubusercontent.com/assets/816651/10701941/4843b01a-797b-11e5-8c24-7f73c6b31b3a.png)
+
 PURPOSE
 -------
 The `tournament.py` script will store the win/lose outcomes of game matches between pairs of players and generate pairings for [Swiss-System tournaments][0].

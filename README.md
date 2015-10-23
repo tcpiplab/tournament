@@ -7,15 +7,15 @@ This README file is for the final assignment of the Udacity Relational Databases
 
 PURPOSE
 -------
-The tournament.py script will store the win/lose outcomes of game matches between pairs of players and generate pairings for [Swiss-System tournaments][0].
+The `tournament.py` script will store the win/lose outcomes of game matches between pairs of players and generate pairings for [Swiss-System tournaments][0].
 
 FILES
 -----
 This README file should accompany the following three files:
 
-* tournament.py
-* tournament.sql
-* tournament_test.py
+* `tournament.py`
+* `tournament.sql`
+* `tournament_test.py`
 
 The first two were written by me, the latter is just a copy of the test script that I downloaded from the course materials.
 
@@ -34,13 +34,13 @@ To create the database and its tables, run this command:
 
 TEST
 ----
-To test the tournament.py script, run this command:
+To test the `tournament.py` script, run this command:
 
     python tournament_test.py
 
 RUN
 ---
-To run the tournament.py script, run this command:
+To run the `tournament.py` script, run this command:
 
     python tournament.py
 
